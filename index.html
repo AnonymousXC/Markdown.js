@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
+
+    <title>MDEditor</title>
+
+</head>
+<body class="uk-light uk-background-secondary" style="height: 100vh;">
+    <div class="uk-container uk-container-small uk-section">
+        
+        <div class="uk-margin-large">
+            <div class="txt0 uk-textarea uk-margin uk-height-medium"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum est justo, iaculis vitae nulla at, pretium auctor mi. Donec varius ipsum sit amet ante porttitor, a malesuada nisi eleifend. Nullam a odio a augue cursus mattis. Mauris bibendum, leo sed cursus facilisis, mauris est blandit ligula, eu ultrices arcu ante id nibh. Aenean sed fringilla dolor, sed tempus massa. Sed cursus nisl at mauris venenatis varius. Nulla vitae purus nulla. Proin quam leo, imperdiet sit amet dapibus quis, commodo in neque.
+                Proin dictum leo vel dui elementum sollicitudin. Donec dictum quam a ultricies ultricies. Duis pharetra, sem ac blandit egestas, nunc dui porttitor neque, dictum venenatis eros lectus quis nisi. Praesent sit amet lorem vitae est semper rhoncus vel in felis. Vestibulum id dui ut eros faucibus blandit. Nunc porttitor odio nec magna vestibulum vestibulum. Nunc non est posuere, hendrerit metus id, euismod neque. Nam sit amet maximus augue, ultricies rhoncus ipsum. Etiam in leo sed libero tristique molestie vitae sit amet quam.</div>
+        </div>
+        
+        <div>
+            <div contenteditable="true" class="txt1 uk-textarea uk-margin" ></div>
+        </div>
+    </div>
+    
+    <script src="MDEditor.js"></script>
+
+    <script>
+
+        new MDEditor({
+            selector: ".txt0"
+        });
+
+    </script>
+
+</body>
+</html>
