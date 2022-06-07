@@ -2,60 +2,45 @@
 const MDEditor = function(options) {
     
     this.options = options;
-    this.EditorDiv = document.querySelector(this.options.selector);
-    this.closeBold = false;
-    this.fullHTML = ""
+    this.EditorDivs = document.querySelectorAll(this.options.div);
+
+    const render = () => {
+
+      this.EditorDivs.forEach((el) => {
+
+        let html = el.innerHTML;
+        let insert = false;
+
+        if(html.search(/(\*(\w+)\*)/g)) {
+            insert = true;
+            html = html.replace(/(\*(\w+)\*)/g , "<i>$2</i>");
+        }
+
+        if(html.search(/(\*\*(\w+)\*\*)/g)) {
+            insert = true;
+            html = html.replace(/(\*\*(\w+)\*\*)/g , "<strong>$2</strong>");
+        }
+
+
+        if(insert === false) return;
+        el.innerHTML = html
+
+      });
+
+    }
 
 
     const functions = {
 
-        onInput : (e) => {
-            functions.search_hash();
-        },
-
-        search_hash : () => {
-
-            let html =  this.EditorDiv.innerHTML; 
-            let insert = false;
-
-            if(html.search(/(\*\*(\w+)\*\*)/) !== -1) {
-              html = html.replace(/(\*\*(\w+)\*\*)/g, "<strong>$2</strong>")
-              insert = true;
-            }
-
-            // if(insert === false) return;
-
-            this.EditorDiv.innerHTML = html
-            console.log(functions.getLines());
-            functions.setCaret(functions.getLines());
-        },
-
-        getLines : () => {
-          return this.EditorDiv.getElementsByTagName("div").length + this.EditorDiv.getElementsByTagName("text").length;
-        },
-
-          setCaret : (line) => {
-            // var el = this.EditorDiv
-            // var range = document.createRange()
-            // var sel = window.getSelection()
-            // console.log(el.childNodes[ line - 1]);
-            // let len = this.EditorDiv.childNodes[line - 1].textContent.length;
-            // let child = el.childNodes[ line - 1];
-
-            // range.setStart(child, len)
-            // range.collapse(true)
-            
-            // sel.removeAllRanges()
-            // sel.addRange(range)
-            // console.log(this.EditorDiv.childNodes[line - 1].innerText);
-        },
-
-        onMake : () => {
-            this.EditorDiv.setAttribute("contenteditable", "true");
-            this.EditorDiv.oninput = (e) => functions.onInput(e);
+        makeEditable : () => {
+            this.EditorDivs.forEach((el) => {
+                el.contentEditable = true;
+            });
         },
 
     }
 
-    functions.onMake();
+
+    this.options.editable ? functions.makeEditable() : "";
+    this.render = render
 }
