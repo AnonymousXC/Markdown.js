@@ -37,11 +37,14 @@
         let x = new MDEditor({
             div : ".txt0",
             editable : false,
+            headings : true,
         });
 
         let y = new MDEditor({
             div : ".txt1",
             editable : true,
+            headings : true,
+            quote : true,
         });
 
         document.querySelector("#btn1").onclick = x.render;
