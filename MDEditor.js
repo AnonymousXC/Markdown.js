@@ -9,6 +9,7 @@ const MDEditor = function(options) {
       this.EditorDivs.forEach((el) => {
 
         let html = el.innerHTML;
+        let htmlcpy = html;
 
         html = html.replace(/(\*\*\*(\w+)\*\*\*)/g , "<strong><i>$2</i></strong>");
         html = html.replace(/(\*\*(\w+)\*\*)/g , "<strong>$2</strong>");
@@ -20,7 +21,13 @@ const MDEditor = function(options) {
 
         html = functions.headingTags(html);
         html = functions.backQuote(html);
+        html = functions.codeTag(html);
+        html = functions.horizontalRule(html);
+        html = functions.imageTag(html);
+        html = functions.linkTag(html);
+        html = functions.ulList(html);
 
+        if(html === htmlcpy) return;
         el.innerHTML = html
       });
     }
@@ -59,7 +66,43 @@ const MDEditor = function(options) {
             html = html.replace(/\<br\>/, "")
 
             return html;
-        }
+        },
+
+        codeTag : (html) => {
+            if(this.options.code === false) return html;
+
+            html = html.replace(/\`(\w+)\`/g, "<code>$1</code>");
+            return html
+        },
+
+        horizontalRule : (html) => {
+            if(this.options.horizontalRule === false) return html;
+
+            html = html.replace(/\-\-\-/g, "<hr>");
+            return html;
+        },
+
+        linkTag : (html) => {
+            if(this.options.links === false) return html;
+
+            html = html.replace(/\[(.+)\]\((.+)\)/g, `<a href = "$2">$1</a>`);
+            return html;
+        },
+
+        imageTag : (html) => {
+            if(this.options.images === false) return html;
+
+            html = html.replace(/\!\[(.+)\]\((.+)\)/g, `<img src="$2" alt="$1"></img>`);
+            return html;
+        },
+
+        ulList : (html) => {
+            if(this.options.ulList === false) return html;
+
+            html = html.replace(/(\- )/gm, "&#8226 ");
+            console.log(html);
+            return html;
+        },
 
     }
 
