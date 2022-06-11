@@ -11,13 +11,13 @@ const MDEditor = function(options) {
         let html = el.innerHTML;
         let htmlcpy = html;
 
-        html = html.replace(/(\*\*\*.+\*\*\*)/g , "<strong><i>$2</i></strong>");
-        html = html.replace(/(\*\*.+\*\*)/g , "<strong>$2</strong>");
-        html = html.replace(/(\*.+\*)/g , "<i>$2</i>");
+        html = html.replace(/(\*\*\*(.+)\*\*\*)/g , "<strong><i>$2</i></strong>");
+        html = html.replace(/(\*\*(.+)\*\*)/g , "<strong>$2</strong>");
+        html = html.replace(/(\*(.+)\*)/g , "<i>$2</i>");
 
-        html = html.replace(/(\_\_\_.+\_\_\_)/g , "<strong><i>$2</i></strong>");
-        html = html.replace(/(\_\_.+\_\_)/g , "<strong>$2</strong>");
-        html = html.replace(/(\_.+\_)/g , "<i>$2</i>");
+        html = html.replace(/(\_\_\_(.+)\_\_\_)/g , "<strong><i>$2</i></strong>");
+        html = html.replace(/(\_\_(.+)\_\_)/g , "<strong>$2</strong>");
+        html = html.replace(/(\_(.+)\_)/g , "<i>$2</i>");
 
         html = functions.headingTags(html);
         html = functions.backQuote(html);
