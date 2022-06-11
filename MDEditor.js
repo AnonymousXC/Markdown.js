@@ -11,13 +11,13 @@ const MDEditor = function(options) {
         let html = el.innerHTML;
         let htmlcpy = html;
 
-        html = html.replace(/(\*\*\*(\w+)\*\*\*)/g , "<strong><i>$2</i></strong>");
-        html = html.replace(/(\*\*(\w+)\*\*)/g , "<strong>$2</strong>");
-        html = html.replace(/(\*(\w+)\*)/g , "<i>$2</i>");
+        html = html.replace(/(\*\*\*.+\*\*\*)/g , "<strong><i>$2</i></strong>");
+        html = html.replace(/(\*\*.+\*\*)/g , "<strong>$2</strong>");
+        html = html.replace(/(\*.+\*)/g , "<i>$2</i>");
 
-        html = html.replace(/(\_\_\_(\w+)\_\_\_)/g , "<strong><i>$2</i></strong>");
-        html = html.replace(/(\_\_(\w+)\_\_)/g , "<strong>$2</strong>");
-        html = html.replace(/(\_(\w+)\_)/g , "<i>$2</i>");
+        html = html.replace(/(\_\_\_.+\_\_\_)/g , "<strong><i>$2</i></strong>");
+        html = html.replace(/(\_\_.+\_\_)/g , "<strong>$2</strong>");
+        html = html.replace(/(\_.+\_)/g , "<i>$2</i>");
 
         html = functions.headingTags(html);
         html = functions.backQuote(html);
@@ -26,10 +26,25 @@ const MDEditor = function(options) {
         html = functions.imageTag(html);
         html = functions.linkTag(html);
         html = functions.ulList(html);
+        html = functions.markTag(html);
 
         if(html === htmlcpy) return;
         el.innerHTML = html
       });
+    }
+
+    let getHTML = () => {
+
+        let htmlArray = [];
+        this.EditorDivs.forEach((el) => {
+
+            render();
+            let html = el.innerHTML;
+            htmlArray.push(html);
+
+          });
+
+          return htmlArray;
     }
 
 
@@ -53,7 +68,7 @@ const MDEditor = function(options) {
             html = html.replace(/\#\#\# (.+)/g , "<h3>$1</h3>");
             html = html.replace(/\#\# (.+)/g , "<h2>$1</h2>");
             html = html.replace(/\# (.+)/g , "<h1>$1</h1>");
-            html = html.replace(/\<br\>/, "")
+            html = html.replace(/\<br\>/, "");
 
             return html;
         },
@@ -71,7 +86,7 @@ const MDEditor = function(options) {
         codeTag : (html) => {
             if(this.options.code === false) return html;
 
-            html = html.replace(/\`(\w+)\`/g, "<code>$1</code>");
+            html = html.replace(/\`(.+)\`/g, "<code>$1</code>");
             return html
         },
 
@@ -99,8 +114,14 @@ const MDEditor = function(options) {
         ulList : (html) => {
             if(this.options.ulList === false) return html;
 
-            html = html.replace(/(\- )/gm, "&#8226 ");
-            console.log(html);
+            html = html.replace(/(\- )/mg, "&#8226 ");
+            return html;
+        },
+
+        markTag : (html) => {
+            if(this.options.mark === false) return html;
+
+            html = html.replace(/\=\=(.+)\=\=/ , "<mark>$1</mark>");
             return html;
         },
 
@@ -108,5 +129,6 @@ const MDEditor = function(options) {
 
 
     this.options.editable ? functions.makeEditable() : "";
-    this.render = render
+    this.render = render;
+    this.getHTML = getHTML;
 }

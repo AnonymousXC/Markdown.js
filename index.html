@@ -19,7 +19,24 @@
     <div class="uk-container uk-container-small uk-section">
         
         <div class="uk-margin-large">
-            <div class="txt0 uk-textarea uk-margin uk-height-medium"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum est justo, iaculis vitae nulla at, pretium auctor mi. Donec varius ipsum sit amet ante porttitor, a malesuada nisi eleifend. Nullam a odio a augue cursus mattis. Mauris bibendum, leo sed cursus facilisis, mauris est blandit ligula, eu ultrices arcu ante id nibh. Aenean sed fringilla dolor, sed tempus massa. Sed cursus nisl at mauris venenatis varius. Nulla vitae purus nulla. Proin quam leo, imperdiet sit amet dapibus quis, commodo in neque. Proin dictum leo vel dui elementum sollicitudin. Donec dictum quam a ultricies ultricies. Duis pharetra, sem ac blandit egestas, nunc dui porttitor neque, dictum venenatis eros lectus quis nisi. Praesent sit amet lorem vitae est semper rhoncus vel in felis. Vestibulum id dui ut eros faucibus blandit. Nunc porttitor odio nec magna vestibulum vestibulum. Nunc non est posuere, hendrerit metus id, euismod neque. Nam sit amet maximus augue, ultricies rhoncus ipsum.Etiam in leo sed libero tristique molestie vitae sit amet quam.</div>
+            <div class="txt0 uk-textarea uk-margin uk-height-medium">
+
+                # Heading 1 <br>
+                ## Heading 2 <br>
+                ### Heading 3 <br>
+                #### Heading 4 <br>
+                Horizontal Rule <br>
+                --- <br>
+                > Quoted <br>
+                `Single Line Code` <br>
+                [Its Me Only](https://github.com/AnonymousXC) <br>
+                ![Image](https://avatars.githubusercontent.com/u/96725322?v=4) <br>
+                - ul list <br>
+                ==Mark Tag== <br>
+
+
+
+            </div>
             <button class="uk-button uk-button-default" id="btn1">Render 1</button>
         </div>
         
@@ -36,8 +53,15 @@
 
         let x = new MDEditor({
             div : ".txt0",
-            editable : false,
+            editable : true,
             headings : true,
+            quote : true,
+            code: true,
+            horizontalRule : true,
+            links : true,
+            images : true,
+            ulList : true,
+            mark : true
         });
 
         let y = new MDEditor({
@@ -46,6 +70,11 @@
             headings : true,
             quote : true,
             code: true,
+            horizontalRule : true,
+            links : true,
+            images : true,
+            ulList : true,
+            mark : true
         });
 
         document.querySelector("#btn1").onclick = x.render;
