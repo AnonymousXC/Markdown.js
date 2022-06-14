@@ -3,6 +3,12 @@
 <div align="center">
     <i>Using this extension you can render markdown in your div element. This is very fast and light weight. It is made for my one of the projects which is An Electron Chat app With Integration of Python.</i>
     <br> <br>
+    <span>
+    <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/AnonymousXC/MDEditor">
+    <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/AnonymousXC/MDEditor">
+    <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/AnonymousXC/MDEditor">
+    <img alt="GitHub" src="https://img.shields.io/github/license/AnonymousXC/MDEditor">
+    </span>
 </div>
 
 ## Pros
